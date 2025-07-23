@@ -31,7 +31,7 @@
                 },
                 "reference_genes": {
                     "type": "string",
-                    "default": "reference_toxin_genes.fasta",
+                    "default": "data/reference_toxin_genes.fasta",
                     "pattern": "^\\S+$",
                     "description": "Path to multi-fasta file containing reference toxin gene sequences.",
                     "format": "file-path",
