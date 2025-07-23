@@ -54,6 +54,7 @@ lint:
     - .github/ISSUE_TEMPLATE/config.yml
     - .github/workflows/awstest.yml
     - .github/workflows/awsfulltest.yml
+    - ro-crate-metadata.json
   readme:
     - nextflow_badge
   included_configs: false

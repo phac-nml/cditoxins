@@ -6,18 +6,67 @@ This document describes the output produced by the pipeline.
 
 The directories listed below will be created in the results directory after the pipeline has finished. All paths are relative to the top-level results directory.
 
-<!-- TODO nf-core: Write this documentation describing your workflow's output -->
+- `blastn`: very small mock assembly files for each sample
+- `pipeline_info`: information about the pipeline's execution
+
+The IRIDA Next-compliant JSON output file will be named `iridanext.output.json.gz` and will be written to the top-level of the results directory. This file is compressed using GZIP and conforms to the [IRIDA Next JSON output specifications](https://github.com/phac-nml/pipeline-standards#42-irida-next-json).
 
 ## Pipeline overview
 
 The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data using the following steps:
 
-
+- [Make BLASTdb](#assembly-stub) - Makes a nucleotide blast database from the reference toxin genes
+- [BLASTN](#generate-sample-json) - Runs a blast search with the query genome assemblies against the reference gene database
+- [Filtering blast](#simplify-irida-json) - Filters the output blast results to get positive/negative values for each toxin target
+- [IRIDA Next Output](#irida-next-output) - Generates a JSON output file that is compliant with IRIDA Next
 - [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
 
+### Make BLASTdb 
 
+<details markdown="1">
+<summary>Output files</summary>
 
+- None
 
+</details>
+
+### BLASTN
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `/`
+  - If one or more samples had an assembly size of zero, a text file containing a list of empty assemblies and were not evaluated by blastn for toxin genes: `errors.csv`
+  - If one or more samples had no hits in blastn, a text file containing list of samples that had no hits: `nohits.csv` 
+- `blastn/`
+  - Text files: `SAMPLEID.txt`
+
+</details>
+
+### Filtering blast
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `/`
+  - Text summary describing samples and toxin results: `results.csv`
+      - `NEG` indicates no toxin gene detected
+      - `POS` indicates a toxin gene was detected
+      - `POSDEL` indicates a toxin gene with a previously described deletion was detected
+      - `NaN` indicates the sample/toxin was not evaluated due to empty assembly
+  
+
+</details>
+
+### IRIDA Next Output
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `/`
+  - IRIDA Next-compliant JSON output: `iridanext.output.json.gz`
+
+</details>
 
 ### Pipeline information
 

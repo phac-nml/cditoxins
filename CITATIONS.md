@@ -10,9 +10,15 @@
 
 ## Pipeline tools
 
+- [BLASTN+](https://blast.ncbi.nlm.nih.gov/Blast.cgi)
 
+  > Camacho C, Coulouris G, Avagyan V, Ma N, Papadopoulos J, Bealer K, and Madden TL. BLAST+: architecture and applications. BMC Bioinformatics. 2009 (10), 421. https://doi.org/10.1186/1471-2105-10-421
 
+## Biological references
 
+  > Lemee L, Dhalluin A, Testelin S, Mattrat M, Maillard K, Lemeland J, Pons J Multiplex PCR Targeting *tpi* (Triose Phosphate Isomerase), *tcdA* (Toxin A), and *tcdB* (Toxin B) Genes for Toxigenic Culture of *Clostridium difficile*. 2004. J Clin Microbiol 42: https://doi.org/10.1128/jcm.42.12.5710-5714.2004
+
+  > Spigaglia P and Mastrantonio P. Comparative analysis of *Clostridium difficile* clinical isolates belonging to different genetic lineages and time periods. Journal of Medical Microbiology. 2004, 53(11): 1129-1136. https://doi.org/10.1099/jmm.0.45682-0
 
 ## Software packaging/containerisation tools
 
