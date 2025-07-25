@@ -17,6 +17,7 @@
                 "type": "string",
                 "format": "file-path",
                 "pattern": "^\\S+\\.f(ast)?a(\\.gz)?$",
+                "exists": true,
                 "errorMessage": "Fasta assembly file must be provided, cannot contain spaces and must have the extension: '.fa', '.fasta', '.fa.gz' or '.fastq.gz'"
             }
         },

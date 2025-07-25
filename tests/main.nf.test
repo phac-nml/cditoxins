@@ -1,0 +1,113 @@
+nextflow_pipeline {
+
+    name "Test Workflow main.nf"
+    script "main.nf"
+
+    test("Missing input fasta data") {
+        tag "fail"
+
+        when {
+            params {
+                input = "${projectDir}/tests/test_data/samplesheet_missing.csv"
+                outdir = "results"
+                reference_genes = "${projectDir}/data/reference_toxin_genes.fasta"
+            }
+        }
+
+        then {
+            assert workflow.failed
+            assert workflow.stdout.contains("ERROR ~ Validation of pipeline parameters failed!")
+        }
+
+    }
+
+    test("Empty assembly fasta") {
+        tag "success"
+
+        when {
+            params {
+                input = "${projectDir}/tests/test_data/samplesheet_empty.csv"
+                outdir = "results"
+                reference_genes = "${projectDir}/data/reference_toxin_genes.fasta"
+            }
+        }
+
+        then {
+            // Status
+            assert workflow.success
+
+             // Channels and files exist
+            assert path("${launchDir}/results").exists()
+
+            // Empty output csv
+            assert path("${launchDir}/results/errors.csv").exists()
+
+            def lines = []
+            lines = path("${launchDir}/results/errors.csv").text
+            assert lines.contains("Assembly is empty - will not run toxin detection")
+        }
+
+    }
+
+    test("Data run test") {
+        tag "success"
+
+        when {
+            params {
+                input = "${projectDir}/tests/test_data/samplesheet.csv"
+                outdir = "results"
+                reference_genes = "${projectDir}/data/reference_toxin_genes.fasta"
+            }
+        }
+
+        then {
+
+            // Status
+            assert workflow.success
+            //assert snapshot(workflow.out).match()
+
+            // Channels and files exist
+            def lines = []
+            assert path("${launchDir}/results").exists()
+
+            // Check BLASTN files
+            assert path("${launchDir}/results/blastn/SAMPLE1.txt").exists()
+            assert path("${launchDir}/results/blastn/SAMPLE2.txt").exists()
+            assert path("${launchDir}/results/blastn/SAMPLE3.txt").exists()
+
+            lines = path("${launchDir}/results/blastn/SAMPLE1.txt").text
+            assert lines.contains("cdi_tpi_R20291_228bp")
+
+            // Check nohits file
+            assert path("${launchDir}/results/nohits.csv").exists()
+
+
+            // Check final results file
+            assert path("${launchDir}/results/results.csv").exists()
+
+            lines = path("${launchDir}/results/results.csv").text
+            assert lines.contains("sample,tcdAPCR,tcdBPCR,tcdCPCR,cdtBPCR,tpiPCR")
+            assert lines.contains("SAMPLE1,POS420,POS,POSDEL,POS,POS")
+            assert lines.contains("SAMPLE2,POS420,POS,POS,NEG,POS")
+            assert lines.contains("SAMPLE3,NEG,NEG,NEG,NEG,NEG")
+
+            // Check IRIDA Next file
+            assert path("${launchDir}/results/iridanext.output.json.gz").exists()
+
+            lines = path("${launchDir}/results/iridanext.output.json.gz").linesGzip.join("\n")
+            assert lines.contains("\"path\": \"results.csv\"")
+            assert lines.contains("\"path\": \"blastn/SAMPLE1.txt\"")
+            assert lines.contains("\"path\": \"blastn/SAMPLE2.txt\"")
+            assert lines.contains("\"path\": \"blastn/SAMPLE3.txt\"")
+            assert lines.contains(" \"tcdAPCR\": \"POS420\"")
+
+            // Checking that outdirs exist
+            assert path("${launchDir}/results/blastn").exists()
+
+            // Pipeline info and tracking
+            assert path("${launchDir}/results/pipeline_info").exists()
+            assert path("${launchDir}/results/pipeline_info/cditoxins_software_versions.yml").exists()
+
+        }
+    }
+}

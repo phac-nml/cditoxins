@@ -1,0 +1,25 @@
+{
+    "Generate results file [csv]": {
+        "content": [
+            {
+                "0": [
+                    "results.csv:md5,fc993e7e62aceea8b7eb87d450647255"
+                ],
+                "1": [
+                    "versions.yml:md5,390ea8ba4daa9c0d875e4353649a046f"
+                ],
+                "results": [
+                    "results.csv:md5,fc993e7e62aceea8b7eb87d450647255"
+                ],
+                "versions": [
+                    "versions.yml:md5,390ea8ba4daa9c0d875e4353649a046f"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2025-07-25T07:32:48.897732858"
+    }
+}
