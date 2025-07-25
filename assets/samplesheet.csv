@@ -1,4 +1,4 @@
 sample,assembly
-SAMPLE1,data/NAP1_assembly.fasta
-SAMPLE2,data/NAP2_assembly.fasta
-SAMPLE3,data/NAP3_assembly.fasta
+SAMPLE1,tests/test_data/SAMPLE1_assembly.fasta
+SAMPLE2,tests/test_data/SAMPLE2_assembly.fasta
+SAMPLE3,tests/test_data/SAMPLE3_assembly.fasta

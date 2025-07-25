@@ -1,0 +1,40 @@
+nextflow_process {
+
+    name "Test Process FILTERING_BLAST"
+    script "../main.nf"
+    process "FILTERING_BLAST"
+
+    test("Generate results file [csv]") {
+
+        when {
+            params {
+                outdir = "tests/results"
+            }
+            process {
+                """
+                // define inputs of the process here. Example:
+                input[0] = file("${projectDir}/tests/test_data/SAMPLE1.txt")
+                input[1] = file("${projectDir}/tests/test_data/samplesheet.csv")
+                input[2] = file("${projectDir}/tests/test_data/nohits.csv")
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert snapshot(process.out).match()
+
+            with(process.out) {
+                // check if emitted output has been created
+                assert results.size() == 1
+
+                // check if text matches 
+                assert path(results.get(0)).text.contains("sample,tcdAPCR,tcdBPCR,tcdCPCR,cdtBPCR,tpiPCR")
+                assert path(results.get(0)).text.contains("SAMPLE1,POS420,POS,POSDEL,POS,POS")
+                assert path(results.get(0)).text.contains("SAMPLE2,NEG,NEG,NEG,NEG,NEG")
+            }
+        }
+
+    }
+
+}
