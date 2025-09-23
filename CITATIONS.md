@@ -16,9 +16,9 @@
 
 ## Biological references
 
-  > Lemee L, Dhalluin A, Testelin S, Mattrat M, Maillard K, Lemeland J, Pons J Multiplex PCR Targeting *tpi* (Triose Phosphate Isomerase), *tcdA* (Toxin A), and *tcdB* (Toxin B) Genes for Toxigenic Culture of *Clostridium difficile*. 2004. J Clin Microbiol 42: https://doi.org/10.1128/jcm.42.12.5710-5714.2004
+> Lemee L, Dhalluin A, Testelin S, Mattrat M, Maillard K, Lemeland J, Pons J Multiplex PCR Targeting _tpi_ (Triose Phosphate Isomerase), _tcdA_ (Toxin A), and _tcdB_ (Toxin B) Genes for Toxigenic Culture of _Clostridium difficile_. 2004. J Clin Microbiol 42: https://doi.org/10.1128/jcm.42.12.5710-5714.2004
 
-  > Spigaglia P and Mastrantonio P. Comparative analysis of *Clostridium difficile* clinical isolates belonging to different genetic lineages and time periods. Journal of Medical Microbiology. 2004, 53(11): 1129-1136. https://doi.org/10.1099/jmm.0.45682-0
+> Spigaglia P and Mastrantonio P. Comparative analysis of _Clostridium difficile_ clinical isolates belonging to different genetic lineages and time periods. Journal of Medical Microbiology. 2004, 53(11): 1129-1136. https://doi.org/10.1099/jmm.0.45682-0
 
 ## Software packaging/containerisation tools
 

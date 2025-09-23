@@ -2,17 +2,17 @@
 
 ## Introduction
 
-This pipeline searches for toxin genes in *Clostridioides difficile* genome assemblies. It mimicks the standard laboratory PCR test used by ARNI. The following toxins are targeted in this pipeline:
+This pipeline searches for toxin genes in _Clostridioides difficile_ genome assemblies. It mimicks the standard laboratory PCR test used by ARNI. The following toxins are targeted in this pipeline:
 
-| Gene | Description | Minimum percent identity | Minimum length (bp) | Result |
-| :---- | :--- | :---- | :---- | :---- |
-| *cdtB* | Binary toxin              | 95 | 528 | POS |
-| *tpi*  | Species-specific gene     | 95 | 228 | POS |
-| *tcdA* | Toxin A                   | 90 | 100 | 420 bp = POS, 147bp = POS147 |
-| *tcdB* | Toxin B                   | 90 | 329 | POS |
-| *tcdC* | Regulator of toxins A & B | 90 | 600 | 676 bp = POS, 657 bp = POSDEL, 637 bp = POSDEL18+ |
+| Gene   | Description               | Minimum percent identity | Minimum length (bp) | Result                                            |
+| :----- | :------------------------ | :----------------------- | :------------------ | :------------------------------------------------ |
+| _cdtB_ | Binary toxin              | 95                       | 528                 | POS                                               |
+| _tpi_  | Species-specific gene     | 95                       | 228                 | POS                                               |
+| _tcdA_ | Toxin A                   | 90                       | 100                 | 420 bp = POS, 147bp = POS147                      |
+| _tcdB_ | Toxin B                   | 90                       | 329                 | POS                                               |
+| _tcdC_ | Regulator of toxins A & B | 90                       | 600                 | 676 bp = POS, 657 bp = POSDEL, 637 bp = POSDEL18+ |
 
-Both *tcdA* and *tcdC* can have different deletions. 
+Both _tcdA_ and _tcdC_ can have different deletions.
 
 ## Samplesheet input
 
@@ -22,7 +22,7 @@ You will need to create a samplesheet with information about the samples you wou
 --input '[path to samplesheet file]'
 ```
 
-The input samplesheet must contain two columns: `sample`, `fasta`. The sample IDs within a samplesheet should be unique. All other columns will be ignored. A final samplesheet file may look something like the one below. 
+The input samplesheet must contain two columns: `sample`, `fasta`. The sample IDs within a samplesheet should be unique. All other columns will be ignored. A final samplesheet file may look something like the one below.
 
 ```csv title="samplesheet.csv"
 sample,assembly
@@ -31,10 +31,10 @@ SAMPLE2,SAMPLE2_assembly.fasta
 SAMPLE3,SAMPLE3_assembly.fasta
 ```
 
-| Column    | Description                                                                                                                                                                            |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sample`  | Custom sample name. Samples should be unique within a samplesheet.                                                         |
-| `fasta` | Full path to fasta assembly file for the corresponding sample. File has to be gzipped and have the extension ".fasta.gz" or ".fa.gz". |                                                         |
+| Column   | Description                                                                                                                           |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| `sample` | Custom sample name. Samples should be unique within a samplesheet.                                                                    |
+| `fasta`  | Full path to fasta assembly file for the corresponding sample. File has to be gzipped and have the extension ".fasta.gz" or ".fa.gz". |     |
 
 An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
 

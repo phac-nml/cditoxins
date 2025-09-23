@@ -7,3 +7,5 @@ testing*
 *.pyc
 null/
 .nf-test*
+nml*
+conf/nml*

@@ -21,7 +21,7 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 - [IRIDA Next Output](#irida-next-output) - Generates a JSON output file that is compliant with IRIDA Next
 - [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
 
-### Make BLASTdb 
+### Make BLASTdb
 
 <details markdown="1">
 <summary>Output files</summary>
@@ -37,7 +37,7 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 
 - `/`
   - If one or more samples had an assembly size of zero, a text file containing a list of empty assemblies and were not evaluated by blastn for toxin genes: `errors.csv`
-  - If one or more samples had no hits in blastn, a text file containing list of samples that had no hits: `nohits.csv` 
+  - If one or more samples had no hits in blastn, a text file containing list of samples that had no hits: `nohits.csv`
 - `blastn/`
   - Text files: `SAMPLEID.txt`
 
@@ -50,11 +50,10 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 
 - `/`
   - Text summary describing samples and toxin results: `results.csv`
-      - `NEG` indicates no toxin gene detected
-      - `POS` indicates a toxin gene was detected
-      - `POSDEL` indicates a toxin gene with a previously described deletion was detected
-      - `NaN` indicates the sample/toxin was not evaluated due to empty assembly
-  
+    - `NEG` indicates no toxin gene detected
+    - `POS` indicates a toxin gene was detected
+    - `POSDEL` indicates a toxin gene with a previously described deletion was detected
+    - `NaN` indicates the sample/toxin was not evaluated due to empty assembly
 
 </details>
 

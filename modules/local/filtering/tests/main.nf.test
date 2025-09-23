@@ -28,7 +28,7 @@ nextflow_process {
                 // check if emitted output has been created
                 assert results.size() == 1
 
-                // check if text matches 
+                // check if text matches
                 assert path(results.get(0)).text.contains("sample,tcdAPCR,tcdBPCR,tcdCPCR,cdtBPCR,tpiPCR")
                 assert path(results.get(0)).text.contains("SAMPLE1,POS420,POS,POSDEL,POS,POS")
                 assert path(results.get(0)).text.contains("SAMPLE2,NEG,NEG,NEG,NEG,NEG")
