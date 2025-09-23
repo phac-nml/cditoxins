@@ -4,18 +4,7 @@ nf_core_version: 3.2.1
 
 lint:
   files_unchanged:
-    - .prettierignore
     - .github/CONTRIBUTING.md
-    - .github/CONTRIBUTING.md
-    - assets/sendmail_template.txt
-    - .prettierignore
-    - .prettierignore
-    - .github/CONTRIBUTING.md
-    - .github/CONTRIBUTING.md
-    - assets/sendmail_template.txt
-    - .prettierignore
-    - .prettierignore
-    - .prettierignore
     - CODE_OF_CONDUCT.md
     - assets/nf-core-cditoxins_logo_light.png
     - docs/images/nf-core-cditoxins_logo_light.png
@@ -23,8 +12,14 @@ lint:
     - .github/ISSUE_TEMPLATE/bug_report.yml
     - .github/CONTRIBUTING.md
     - .github/PULL_REQUEST_TEMPLATE.md
+    - .github/workflows/linting_comment.yml
+    - .github/workflows/linting.yml
     - assets/email_template.txt
+    - assets/sendmail_template.txt
     - docs/README.md
+    - .gitignore
+    - .prettierrc.yml
+    - .prettierignore
   nextflow_config:
     - process.cpus
     - process.memory
@@ -54,6 +49,9 @@ lint:
     - .github/ISSUE_TEMPLATE/config.yml
     - .github/workflows/awstest.yml
     - .github/workflows/awsfulltest.yml
+    - .github/workflows/nf-test.yml
+    - .github/actions/get-shards/action.yml
+    - .github/actions/nf-test/action.yml
     - ro-crate-metadata.json
   readme:
     - nextflow_badge

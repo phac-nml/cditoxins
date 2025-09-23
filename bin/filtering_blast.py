@@ -2,9 +2,9 @@
 
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 #
-# PURPOSE: 
-# This script takes multiple *txt files output by blastn and 
-# filters the results to output a POS/NEG value table for 
+# PURPOSE:
+# This script takes multiple *txt files output by blastn and
+# filters the results to output a POS/NEG value table for
 # each of the toxin gene targets for each sample
 # AUTHOR: Nicole Lerminiaux <nicole.lerminiaux@phac-aspc.gc.ca>
 #
@@ -36,7 +36,7 @@ for i in range(0,len(files)):
     except pd.errors.EmptyDataError:
         continue
 
-# initialize empty list for output data 
+# initialize empty list for output data
 output_data = []
 
 # loop through each sample
@@ -51,7 +51,7 @@ for df in data:
     top = sorted.drop_duplicates(subset=["filename","sseqid"])
     # get sample name
     sample_ID = str(top['filename'].values[0]).removesuffix('.txt')
-    # get smaller dfs for each gene based on percent ID and length 
+    # get smaller dfs for each gene based on percent ID and length
     tcdB = top[(top["sseqid"].str.contains("tcdB")) & (top["pident"] >= 90) & (top["length"] >= 329) ]
     cdtB = top[(top["sseqid"].str.contains("cdt_B")) & (top["pident"] >= 95) & (top["length"] >= 528) ]
     tpi = top[(top["sseqid"].str.contains("tpi")) & (top["pident"] >= 95) & (top["length"] >= 228) ]
@@ -83,11 +83,11 @@ for df in data:
     # if there is tcdA hit, take the top hit based on sequence ID, then print which pos
     if not tcdC.empty:
         if "676bp" in tcdC.drop_duplicates(subset=["filename"])["sseqid"].values[0]:
-            output_data.append([sample_ID, "tcdCPCR", "POS"]) 
+            output_data.append([sample_ID, "tcdCPCR", "POS"])
         elif "657bp" in tcdC.drop_duplicates(subset=["filename"])["sseqid"].values[0]:
-            output_data.append([sample_ID, "tcdCPCR", "POSDEL"]) 
+            output_data.append([sample_ID, "tcdCPCR", "POSDEL"])
         elif "637bp" in tcdC.drop_duplicates(subset=["filename"])["sseqid"].values[0]:
-            output_data.append([sample_ID, "tcdCPCR", "POSDEL18+"]) 
+            output_data.append([sample_ID, "tcdCPCR", "POSDEL18+"])
     else:
         output_data.append([sample_ID, "tcdCPCR", "NEG"])
 
@@ -106,8 +106,8 @@ try:
     concat_nohits = pd.concat([df_pivoted, nohits])
 except FileNotFoundError:
     concat_nohits = df_pivoted
-    
-# join to samplesheet and NaN will fill in those with empty assemblies 
+
+# join to samplesheet and NaN will fill in those with empty assemblies
 joined = pd.merge(samples, concat_nohits, on="sample", how = "left")
 
 # write output file

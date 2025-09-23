@@ -7,8 +7,8 @@ include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_cditoxins_pipeline'
 
-include { BLAST_MAKEBLASTDB    } from '../modules/nf-core/blast/makeblastdb/main' 
-include { BLAST_BLASTN         } from '../modules/nf-core/blast/blastn/main' 
+include { BLAST_MAKEBLASTDB    } from '../modules/nf-core/blast/makeblastdb/main'
+include { BLAST_BLASTN         } from '../modules/nf-core/blast/blastn/main'
 include { FILTERING_BLAST      } from '../modules/local/filtering/main'
 
 /*
@@ -39,10 +39,10 @@ workflow CDITOXINS {
     //
     ch_samplesheet
         .map {meta, assembly -> tuple(meta, assembly[0]) }
-        .branch { meta, assembly -> 
+        .branch { meta, assembly ->
                 pass: assembly.size() > 0
                 empty: assembly.size() == 0
-                unknown: true 
+                unknown: true
                 }
         .set { ch_assemblies }
 
@@ -69,7 +69,7 @@ workflow CDITOXINS {
         .set { ch_blast_db }
 
     //
-    // Run BLASTN on assemblies    
+    // Run BLASTN on assemblies
     //
     BLAST_BLASTN(
         ch_assemblies.pass, ch_blast_db
@@ -78,7 +78,7 @@ workflow CDITOXINS {
 
     // Print list of failed assemblies based on BLASTN output report filesize
     ch_reports = BLAST_BLASTN.out.txt
-        .branch { meta, report -> 
+        .branch { meta, report ->
                     pass: report.size() > 0
                     empty: report.size () == 0
                     unknown: true
@@ -86,7 +86,7 @@ workflow CDITOXINS {
         .set {ch_reports_status}
     ch_reports_status.empty.view { v -> "$v has nohits in blast"}
 
-    // Output a list of assemblies with nohits in BLASTN, as they don't appear in BLASTN output 
+    // Output a list of assemblies with nohits in BLASTN, as they don't appear in BLASTN output
     ch_reports_status.empty
         .map { meta, report -> meta.id }
         .collectFile(name: "nohits.csv", newLine: true, storeDir: params.outdir)

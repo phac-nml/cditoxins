@@ -2,19 +2,19 @@
 
 ## Introduction
 
-**phac-nml/cditoxins** is a bioinformatics pipeline that searches for toxin genes in *Clostridioides difficile* genome assemblies. It mimicks the standard laboratory PCR test for confirmation of *C. difficile* and detection of toxin targets used by ARNI. The following genes are targeted in this pipeline (note both *tcdA* and *tcdC* can have different deletions):
+**phac-nml/cditoxins** is a bioinformatics pipeline that searches for toxin genes in _Clostridioides difficile_ genome assemblies. It mimicks the standard laboratory PCR test for confirmation of _C. difficile_ and detection of toxin targets used by ARNI. The following genes are targeted in this pipeline (note both _tcdA_ and _tcdC_ can have different deletions):
 
-| Gene | Description | Minimum percent identity | Minimum length (bp) | Result |
-| :---- | :--- | :---- | :---- | :---- |
-| *cdtB* | Binary toxin              | 95 | 528 | POS |
-| *tpi*  | Species-specific gene     | 95 | 228 | POS |
-| *tcdA* | Toxin A                   | 90 | 100 | 420 bp = POS, 147bp = POS147 |
-| *tcdB* | Toxin B                   | 90 | 329 | POS |
-| *tcdC* | Regulator of toxins A & B | 90 | 600 | 676 bp = POS, 657 bp = POSDEL, 637 bp = POSDEL18+ |
+| Gene   | Description               | Minimum percent identity | Minimum length (bp) | Result                                            |
+| :----- | :------------------------ | :----------------------- | :------------------ | :------------------------------------------------ |
+| _cdtB_ | Binary toxin              | 95                       | 528                 | POS                                               |
+| _tpi_  | Species-specific gene     | 95                       | 228                 | POS                                               |
+| _tcdA_ | Toxin A                   | 90                       | 100                 | 420 bp = POS, 147bp = POS147                      |
+| _tcdB_ | Toxin B                   | 90                       | 329                 | POS                                               |
+| _tcdC_ | Regulator of toxins A & B | 90                       | 600                 | 676 bp = POS, 657 bp = POSDEL, 637 bp = POSDEL18+ |
 
-This pipeline creates a BLASTN database from a set of reference genes, and uses BLASTN to search for target genes in each assembly. The result is then filtered to output a .csv file indicating POS/NEG for each gene target in each assembly. 
+This pipeline creates a BLASTN database from a set of reference genes, and uses BLASTN to search for target genes in each assembly. The result is then filtered to output a .csv file indicating POS/NEG for each gene target in each assembly.
 
-See [Leeman *et al.* 2004](https://doi.org/10.1128/jcm.42.12.5710-5714.2004) and [Spigaglia & Mastrantonio *et al.* 2004](https://doi.org/10.1099/jmm.0.45682-0) for more information on the toxin targets and PCR test. 
+See [Leeman _et al._ 2004](https://doi.org/10.1128/jcm.42.12.5710-5714.2004) and [Spigaglia & Mastrantonio _et al._ 2004](https://doi.org/10.1099/jmm.0.45682-0) for more information on the toxin targets and PCR test.
 
 ## Usage
 
@@ -63,14 +63,15 @@ For more information, please see the [usage doc](docs/output.md).
 The main output is the `results.csv` file written to the output directory. It has the following structure:
 
 | sample  | tcdAPCR | tcdBPCR | tcdCPCR | cdtBPCR | tpiPCR |
-| :---    | :---    | :----   | :-----  | :---    | :----  |
+| :------ | :------ | :------ | :------ | :------ | :----- |
 | SAMPLE1 | POS420  | POS     | POSDEL  | POS     | POS    |
 | SAMPLE2 | POS420  | POS     | POS     | NEG     | POS    |
 | SAMPLE3 | POS420  | POS     | POS     | NEG     | POS    |
 
-**Note:** *tpi* should always be positive as it is a species-specific gene to confirm *C. difficile* identity. 
+**Note:** _tpi_ should always be positive as it is a species-specific gene to confirm _C. difficile_ identity.
 
-In addition, there may be two text files generated in the output directory: 
+In addition, there may be two text files generated in the output directory:
+
 - `errors.csv` containing a list of sample IDs with empty assembly files and consequently were not searched for toxins with BLASTN
 - `nohits.csv` containing a list of sample IDs that had assemblies searched against BLASTN but did not have any hits (negative results)
 
@@ -140,7 +141,7 @@ For more information, please see the [output doc](docs/output.md).
 
 ## Credits
 
-This pipeline was developed in consultation with Tim Du. 
+This pipeline was developed in consultation with Tim Du.
 
 Many thanks to Darian Hole for creating the initial version in Galaxy!
 
@@ -169,7 +170,6 @@ Licensed under the MIT License (the "License"); you may not use this work except
 https://opensource.org/license/mit/
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
 
 ## Contact
 

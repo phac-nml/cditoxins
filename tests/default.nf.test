@@ -9,7 +9,7 @@ nextflow_pipeline {
         when {
             params {
                 input = "${projectDir}/tests/test_data/samplesheet_missing.csv"
-                outdir = "results"
+                outdir = "${outputDir}"
                 reference_genes = "${projectDir}/data/reference_toxin_genes.fasta"
             }
         }
@@ -27,7 +27,7 @@ nextflow_pipeline {
         when {
             params {
                 input = "${projectDir}/tests/test_data/samplesheet_empty.csv"
-                outdir = "results"
+                outdir = "${outputDir}"
                 reference_genes = "${projectDir}/data/reference_toxin_genes.fasta"
             }
         }
@@ -36,7 +36,7 @@ nextflow_pipeline {
             // Status
             assert workflow.success
 
-             // Channels and files exist
+            // Channels and files exist
             assert path("${launchDir}/results").exists()
 
             // Empty output csv
@@ -55,7 +55,7 @@ nextflow_pipeline {
         when {
             params {
                 input = "${projectDir}/tests/test_data/samplesheet.csv"
-                outdir = "results"
+                outdir = "${outputDir}"
                 reference_genes = "${projectDir}/data/reference_toxin_genes.fasta"
             }
         }

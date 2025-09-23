@@ -8,3 +8,7 @@ testing/
 testing*
 *.pyc
 bin/
+adaptivecard.json
+slackreport.json
+ro-crate-metadata.json
+
