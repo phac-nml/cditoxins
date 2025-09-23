@@ -9,7 +9,7 @@ nextflow_pipeline {
         when {
             params {
                 input = "${projectDir}/tests/test_data/samplesheet_missing.csv"
-                outdir = "results"
+                outdir = "${outputDir}"
                 reference_genes = "${projectDir}/data/reference_toxin_genes.fasta"
             }
         }
@@ -27,7 +27,7 @@ nextflow_pipeline {
         when {
             params {
                 input = "${projectDir}/tests/test_data/samplesheet_empty.csv"
-                outdir = "results"
+                outdir = "${outputDir}"
                 reference_genes = "${projectDir}/data/reference_toxin_genes.fasta"
             }
         }
@@ -55,7 +55,7 @@ nextflow_pipeline {
         when {
             params {
                 input = "${projectDir}/tests/test_data/samplesheet.csv"
-                outdir = "results"
+                outdir = "${outputDir}"
                 reference_genes = "${projectDir}/data/reference_toxin_genes.fasta"
             }
         }
