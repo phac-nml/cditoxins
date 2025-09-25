@@ -50,6 +50,8 @@ lint:
     - .github/workflows/awstest.yml
     - .github/workflows/awsfulltest.yml
     - .github/workflows/nf-test.yml
+    - .github/workflows/download_pipeline.yml
+    - .github/workflows/template_version_comment.yml
     - .github/actions/get-shards/action.yml
     - .github/actions/nf-test/action.yml
     - ro-crate-metadata.json
